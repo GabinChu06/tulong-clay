@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Featured Books Slider</title>
+  
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+  <style>
+    /* Custom styles for the slider */
+    .swiper-button-next, .swiper-button-prev {
+      border: 1px solid #ddd;
+      height: 30px;
+      width: 30px;
+      background: white;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      border-radius: 50%;
+      z-index: 10;
+      opacity: 0; /* Initially hidden */
+      transition: opacity 0.3s ease; /* Smooth transition for opacity */
+    }
+
+    .swiper-button-next:hover, .swiper-button-prev:hover {
+      background-color: #333;
+      color: white;
+    }
+
+    .swiper:hover .swiper-button-next,
+    .swiper:hover .swiper-button-prev {
+      opacity: 1; /* Show buttons when hovered */
+    }
+
+    .featured .featured-slider .box {
+      margin: 1rem;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      width: 100%;
+      transform: scale(0.85); /* Scale down the books */
+      cursor: pointer; /* Show pointer on hover */
+      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+    }
+
+    /* Hover effect for each book */
+    .featured .featured-slider .box:hover {
+      transform: scale(1.05); /* Slightly zoom in on hover */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Add shadow on hover */
+    }
+
+    .featured .featured-slider .box .image {
+      padding: 1rem;
+      background: linear-gradient(15deg, #eee 30%, #fff 30.1%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .featured .featured-slider .box .image img {
+      max-width: 100%;
+      max-height: 15rem; /* Adjusted size for smaller images */
+      object-fit: contain; /* Ensure the whole image is visible */
+    }
+
+    /* Custom styles for the box and images */
+    .featured .featured-slider .box .content {
+      background: #eee;
+      padding: 1rem;
+    }
+
+    .featured .featured-slider .box .content h3 {
+      font-size: 1.2rem; /* Smaller heading */
+      color: #333;
+    }
+
+    .featured .featured-slider .box .content .price {
+      font-size: 1.5rem; /* Smaller price font */
+      color: #333;
+      padding-top: 1rem;
+    }
+
+    .featured .featured-slider .box .content .price span {
+      font-size: 1.1rem; /* Smaller strikethrough font */
+      color: #999;
+      text-decoration: line-through;
+    }
+
+    /* Button styling */
+    .featured .featured-slider .box .content .btn {
+      display: inline-block;
+      background-color: #007bff; /* Blue color */
+      color: white;
+      font-size: 1.1rem;
+      padding: 0.8rem 1.5rem; /* Larger padding */
+      text-decoration: none;
+      border-radius: 50px; /* Rounded corners */
+      text-align: center;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      margin-top: 1rem;
+    }
+
+    /* Hover effect */
+    .featured .featured-slider .box .content .btn:hover {
+      background-color: #0056b3; /* Darker blue on hover */
+      transform: scale(1.1); /* Make the button slightly bigger */
+    }
+
+    /* Grid layout for the books */
+    @media (max-width: 1024px) {
+      .swiper-wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Smaller columns */
+        gap: 0.8rem; /* Smaller gap between items */
+      }
+    }
+
+  </style>
+
+</head>
+<body>
+
+  <section class="featured" id="featured">
+    <h1 class="heading"> <span>Featured Books</span> </h1>
+
+    <div class="swiper featured-slider">
+      <div class="swiper-wrapper">
+        
+        <!-- Wrap each book with an anchor to make it clickable -->
+        <a href="#" class="swiper-slide box">
+          <div class="image">
+            <img src="image/book-1.png" alt="Book 1">
+          </div>
+          <div class="content">
+            <h3>Pangalan ng Libro</h3>
+            <div class="price">Genre</div>
+            <span class="btn">Bookmark</span>
+          </div>
+        </a>
+
+        <a href="#" class="swiper-slide box">
+          <div class="image">
+            <img src="image/book-2.png" alt="Book 2">
+          </div>
+          <div class="content">
+            <h3>Pangalan ng Libro</h3>
+            <div class="price">Genre</div>
+            <span class="btn">Bookmark</span>
+          </div>
+        </a>
+
+        <a href="#" class="swiper-slide box">
+          <div class="image">
+            <img src="image/book-3.png" alt="Book 3">
+          </div>
+          <div class="content">
+            <h3>Pangalan ng Libro</h3>
+            <div class="price">Genre Romance</div>
+            <span class="btn">Bookmark</span>
+          </div>
+        </a>
+
+        <!-- Add more books here -->
+
+      </div>
+
+      <!-- Navigation buttons -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </section>
+
+  <!-- Swiper JS -->
+  <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+  
+  <script>
+    var swiper = new Swiper(".featured-slider", {
+      loop: true,
+      spaceBetween: 10,
+      centeredSlides: true,
+      autoplay: {
+        delay: 9500,
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+        },
+        450: {
+          slidesPerView: 2,
+        },
+        768: {
+          slidesPerView: 3,
+        },
+        1024: {
+          slidesPerView: 4,
+        },
+      },
+    });
+  </script>
+
+</body>
+</html>
